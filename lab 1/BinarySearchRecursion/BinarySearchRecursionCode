@@ -1,0 +1,56 @@
+#include <stdio.h>
+void binarysearch(int[],int,int,int);
+void bubblesort(int[],int);
+int main()
+{
+    int key, size, i, list[25];
+    printf("Enter the size of the list:");
+    scanf("%d",&size);
+    printf("Enter the elements:\n");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&list[i]);
+    }
+    bubblesort(list,size);
+    printf("\n Enter key to search:\n");
+    scanf("%d",&key);
+    binarysearch(list,0,size,key);
+}
+void bubblesort(int list[],int size)
+{
+    int temp,i,j;
+    for(i=0;i<size;i++)
+    {
+        for(j=i;j<size;j++)
+        {
+            if(list[i]>list[j])
+            {
+                temp=list[i];
+                list[i]=list[j];
+                list[j]=temp;
+            }
+        }
+    }
+}
+void binarysearch(int list[],int low,int high, int key)
+{
+    int mid;
+    if(low>high)
+    {
+        printf("Key is not found\n");
+        return;
+    }
+    mid=(low+high)/2;
+    if(list[mid]==key)
+    {
+        printf("key found\n");
+    }
+    else if(list[mid]>key)
+    {
+        binarysearch(list,low,mid-1,key);
+    }
+    else if(list[mid]<key)
+    {
+        binarysearch(list,mid+1,high,key);
+    }
+}
