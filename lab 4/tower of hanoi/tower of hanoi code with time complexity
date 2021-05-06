@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include<time.h>
+void tower(int n, char src, char temp, char dest){
+    if(n==1)
+    {
+        printf("Move disk %d from %c to %c \n",n,src,dest);
+        return;
+    }
+    tower(n-1,src,dest,temp);
+    printf("Move disk %d from %c to %c \n",n,src,dest);
+    tower(n-1,temp,src,dest);
+}
+int main()
+{
+    int n;
+    clock_t t;
+    printf("Enter the number of disks: ");
+    scanf("%d",&n);
+    t= clock();
+    tower(n,'S','T','D');
+    t = clock()-t; 
+    double time_taken = 1000000*((double)t)/CLOCKS_PER_SEC;
+    printf("\nTower of Hanoi took %f milliseconds to execute\n", time_taken);
+}
